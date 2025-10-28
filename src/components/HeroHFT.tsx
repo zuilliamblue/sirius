@@ -77,7 +77,7 @@ export default function HeroHFT() {
           <p className="text-xs text-white/60 mb-2 leading-relaxed">
             São Dezenas de Robôs com Estatísticas Dia-a-Dia, Mês-a-Mês desde 2022 para você
             acompanhar e saber exatamente o quanto pode arriscar e o potencial de ganho de cada
-            configuração. <span className="text-white/80 font-medium">Você no Controle Total!</span>
+            configuração. <span className="text-white/80 font-medium ">Você no Controle Total!</span>
           </p>
 
           <img
