@@ -15,10 +15,7 @@ export default function HeroHFT() {
         />
         <div
           className="absolute -top-24 -right-24 h-72 w-72 rounded-full blur-3xl opacity-25"
-          style={{
-            background:
-              "conic-gradient(from 45deg, #ffd780, #b68b2a, #ffd780)",
-          }}
+          style={{ background: "conic-gradient(from 45deg, #ffd780, #b68b2a, #ffd780)" }}
         />
       </div>
 
@@ -26,18 +23,22 @@ export default function HeroHFT() {
         <div className="grid md:grid-cols-2 gap-8 items-center">
           {/* Texto */}
           <div>
-            <h2 className="text-3xl md:text-4xl font-semibold leading-tight uppercase">
-              OPERE POR <span className="text-[#ffd780]">ESTATÍSTICA PURA!</span>
+            {/* Título centralizado; “Estatística Pura” na linha de baixo */}
+            <h2 className="text-3xl md:text-4xl font-semibold leading-tight text-center md:text-left uppercase">
+              OPERE POR
+              <br />
+              <span className="text-[#ffd780]">ESTATÍSTICA PURA!</span>
             </h2>
 
-            <p className="mt-3 text-white/70 max-w-xl">
+            {/* Parágrafo em itálico */}
+            <p className="mt-3 text-white/70 max-w-xl italic mx-auto md:mx-0">
               Deixe a tomada de decisão para os algoritmos, opere sem sentir medo
               ou culpa quando seus trades dão errado. Aqui você configura os
               parâmetros de acordo com o capital e dá o play nas automações.
             </p>
 
             {/* Bullets */}
-            <ul className="mt-6 space-y-3 text-white/85">
+            <ul className="mt-6 space-y-3 text-white/85 max-w-xl mx-auto md:mx-0">
               <li className="flex gap-3">
                 <span className="mt-0.5 h-5 w-5 rounded-full bg-white/10 grid place-items-center text-sm">✓</span>
                 Robôs 100% Automatizados;
@@ -69,7 +70,7 @@ export default function HeroHFT() {
             </ul>
 
             {/* CTA */}
-            <div className="mt-7 flex gap-3">
+            <div className="mt-7 flex gap-3 justify-center md:justify-start">
               <Link
                 to="/login"
                 className="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 transition"
@@ -85,18 +86,15 @@ export default function HeroHFT() {
             </div>
           </div>
 
-          {/* Mock/ilustração simples sem libs */}
+          {/* Imagem à direita */}
           <div className="relative">
-            <div className="rounded-2xl border border-white/10 bg-white/5 p-4 shadow-xl">
-              <div className="h-40 rounded-lg bg-white/5" />
-              <div className="mt-4 grid grid-cols-3 gap-3">
-                <div className="h-16 rounded-lg bg-white/5" />
-                <div className="h-16 rounded-lg bg-white/5" />
-                <div className="h-16 rounded-lg bg-white/5" />
-              </div>
-              <div className="mt-4 h-10 rounded-lg bg-white/5" />
-            </div>
-            <div className="absolute -bottom-4 -left-4 h-20 w-20 rounded-xl bg-[#ffd780]/20 blur-xl" />
+            <img
+              src="/brand/backtest.png"
+              alt="Backtest e resultados dos robôs HFT"
+              className="rounded-2xl border border-white/10 shadow-xl w-full h-auto object-cover"
+              loading="eager"
+            />
+            <div className="absolute -bottom-4 -left-4 h-20 w-20 rounded-xl bg-[#ffd780]/20 blur-xl pointer-events-none" />
           </div>
         </div>
       </div>
