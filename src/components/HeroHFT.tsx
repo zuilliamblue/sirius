@@ -6,51 +6,65 @@ export default function HeroHFT() {
     <section className="relative overflow-hidden">
       {/* fundo/gradiente */}
       <div className="absolute inset-0 -z-10">
-        <div className="h-full w-full"
+        <div
+          className="h-full w-full"
           style={{
             background:
               "radial-gradient(1200px 600px at 20% 0%, rgba(255,215,128,0.20) 0%, rgba(255,215,128,0.08) 30%, rgba(0,0,0,0) 70%), linear-gradient(180deg, rgba(18,26,46,1) 0%, rgba(12,17,34,1) 100%)",
           }}
         />
-        <div className="absolute -top-24 -right-24 h-72 w-72 rounded-full blur-3xl opacity-25"
-             style={{ background: "conic-gradient(from 45deg, #ffd780, #b68b2a, #ffd780)" }} />
+        <div
+          className="absolute -top-24 -right-24 h-72 w-72 rounded-full blur-3xl opacity-25"
+          style={{
+            background:
+              "conic-gradient(from 45deg, #ffd780, #b68b2a, #ffd780)",
+          }}
+        />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 py-10 md:py-14">
         <div className="grid md:grid-cols-2 gap-8 items-center">
           {/* Texto */}
           <div>
-            <h2 className="text-3xl md:text-4xl font-semibold leading-tight">
-              Operar por <span className="text-[#ffd780]">Estatística Pura</span>,<br />
-              sem emoção — com nossos <span className="italic">robôs HFT</span>.
+            <h2 className="text-3xl md:text-4xl font-semibold leading-tight uppercase">
+              OPERE POR <span className="text-[#ffd780]">ESTATÍSTICA PURA!</span>
             </h2>
+
             <p className="mt-3 text-white/70 max-w-xl">
-              Deixe a tomada de decisão para o algoritmo e acompanhe métricas reais
-              em tempo-real. Configure combinações, siga as regras de coloração e
-              saiba exatamente onde cada robô entra e sai.
+              Deixe a tomada de decisão para os algoritmos, opere sem sentir medo
+              ou culpa quando seus trades dão errado. Aqui você configura os
+              parâmetros de acordo com o capital e dá o play nas automações.
             </p>
 
             {/* Bullets */}
             <ul className="mt-6 space-y-3 text-white/85">
               <li className="flex gap-3">
                 <span className="mt-0.5 h-5 w-5 rounded-full bg-white/10 grid place-items-center text-sm">✓</span>
-                Tira a emoção do trader: execução 100% sistemática.
+                Robôs 100% Automatizados;
               </li>
               <li className="flex gap-3">
                 <span className="mt-0.5 h-5 w-5 rounded-full bg-white/10 grid place-items-center text-sm">✓</span>
-                Estatísticas reais e transparência de resultados.
+                Ordens Oco, Gain e Stop do dia configurados;
               </li>
               <li className="flex gap-3">
                 <span className="mt-0.5 h-5 w-5 rounded-full bg-white/10 grid place-items-center text-sm">✓</span>
-                Sala ao vivo e acompanhamento dos robôs.
+                Estatísticas Reais e Transparência de Resultados;
               </li>
               <li className="flex gap-3">
                 <span className="mt-0.5 h-5 w-5 rounded-full bg-white/10 grid place-items-center text-sm">✓</span>
-                Dezenas de combinações em um único robô.
+                Sala ao Vivo Educacional (Aprenda a operar seus Robôs);
               </li>
               <li className="flex gap-3">
                 <span className="mt-0.5 h-5 w-5 rounded-full bg-white/10 grid place-items-center text-sm">✓</span>
-                Regras de coloração: pontos de entrada/saída claros.
+                Dezenas de Configurações para 1 único Robô de acordo com o seu capital;
+              </li>
+              <li className="flex gap-3">
+                <span className="mt-0.5 h-5 w-5 rounded-full bg-white/10 grid place-items-center text-sm">✓</span>
+                Regra de Coloração que indica exatamente os pontos de entrada dos robôs;
+              </li>
+              <li className="flex gap-3">
+                <span className="mt-0.5 h-5 w-5 rounded-full bg-white/10 grid place-items-center text-sm">✓</span>
+                Automação via Profit Pro da Nelógica: você vai ver os robôs operando em tempo real.
               </li>
             </ul>
 
