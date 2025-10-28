@@ -1,6 +1,5 @@
 // src/components/HeroHFT.tsx
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
 export default function HeroHFT() {
   const [open, setOpen] = useState(false);
@@ -86,21 +85,7 @@ export default function HeroHFT() {
               </li>
             </ul>
 
-            {/* CTA */}
-            <div className="mt-7 flex gap-3 justify-center md:justify-start">
-              <Link
-                to="/login"
-                className="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 transition"
-              >
-                Começar agora
-              </Link>
-              <a
-                href="#vantagens"
-                className="px-5 py-2.5 rounded-xl border border-white/15 hover:border-white/30 transition"
-              >
-                Ver vantagens
-              </a>
-            </div>
+          
           </div>
 
           {/* Imagem à direita + legenda centralizada */}
