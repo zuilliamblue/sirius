@@ -9,11 +9,12 @@ export default function Home() {
       <section id="vantagens" className="max-w-7xl mx-auto px-4 py-10">
         <h3 className="text-xl font-semibold mb-3">Por que usar nossos HFTs?</h3>
         <p className="text-white/70">
-          Segurança de regras claras, execução rápida e rastreabilidade completa.
-          Em breve: backtests, relatórios salvos e comparador, tudo integrando sua
-          conta.
+          Segurança nas Operações. Os Robôs possuem regras claras, não há dúvidas, eles não sentem medo,
+          possuem uma rápida execução e rastreabilidade confiável. Você tem a Estatística e a Probabilidade
+          Matemática completamente a seu favor, basta executar o plano com maestria.
         </p>
       </section>
+
     </main>
   );
 }
