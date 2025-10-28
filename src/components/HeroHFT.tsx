@@ -1,22 +1,65 @@
 // src/components/HeroHFT.tsx
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+
+type Slide = {
+  src: string;
+  alt: string;
+  caption: string;
+};
 
 export default function HeroHFT() {
-  const [open, setOpen] = useState(false);
-  const [zoom, setZoom] = useState(1);
+  // Slides do carrossel (imagens na pasta /public/brand)
+  const slides: Slide[] = [
+    {
+      src: "/brand/backtest.png",
+      alt: "Backtests e estatísticas dos robôs HFT",
+      caption:
+        "São Dezenas de Robôs com Estatísticas Dia-a-Dia, Mês-a-Mês desde 2022 para você acompanhar e saber exatamente o quanto pode arriscar e o potencial de ganho de cada configuração. Você no Controle Total!",
+    },
+    {
+      src: "/brand/robo.png",
+      alt: "Regras de coloração por robô",
+      caption:
+        "Regras de Coloração para cada tipo de Robô, assim você consegue saber exatamente onde ele deve entrar na compra e na venda.",
+    },
+    {
+      src: "/brand/operacao.png",
+      alt: "Operações ao vivo na tela",
+      caption:
+        "Acompanhe os robôs operando ao vivo direto na sua tela, saiba exatamente o que eles estão fazendo e tenha total controle sobre o seu capital.",
+    },
+  ];
 
-  // fecha com ESC
+  const [idx, setIdx] = useState(0);
+  const touchStartX = useRef<number | null>(null);
+
+  const prev = () => setIdx((i) => (i === 0 ? slides.length - 1 : i - 1));
+  const next = () => setIdx((i) => (i === slides.length - 1 ? 0 : i + 1));
+  const go = (i: number) => setIdx(i);
+
+  // Navegação por teclado ← →
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  const inc = () => setZoom((z) => Math.min(3, +(z + 0.25).toFixed(2)));
-  const dec = () => setZoom((z) => Math.max(1, +(z - 0.25).toFixed(2)));
-  const reset = () => setZoom(1);
+  // Swipe simples em mobile
+  function onTouchStart(e: React.TouchEvent) {
+    touchStartX.current = e.touches[0].clientX;
+  }
+  function onTouchEnd(e: React.TouchEvent) {
+    const start = touchStartX.current;
+    if (start == null) return;
+    const end = e.changedTouches[0].clientX;
+    const delta = end - start;
+    if (Math.abs(delta) > 40) (delta > 0 ? prev() : next());
+    touchStartX.current = null;
+  }
 
   return (
     <section className="relative overflow-hidden">
@@ -37,7 +80,7 @@ export default function HeroHFT() {
 
       <div className="max-w-7xl mx-auto px-4 py-10 md:py-14">
         <div className="grid md:grid-cols-2 gap-8 items-center">
-          {/* Texto */}
+          {/* Texto (mantive como antes; sem os CTAs) */}
           <div>
             {/* Título centralizado; “Estatística Pura” na linha de baixo */}
             <h2 className="text-3xl md:text-4xl font-semibold leading-tight text-center md:text-left uppercase">
@@ -84,96 +127,77 @@ export default function HeroHFT() {
                 Automação via Profit Pro da Nelógica: você vai ver os robôs operando em tempo real.
               </li>
             </ul>
-
-          
           </div>
 
-          {/* Imagem à direita + legenda centralizada */}
-          <div className="relative">
-            {/* legenda pequena centralizada */}
+          {/* Carrossel à direita */}
+          <div className="relative select-none">
+            {/* Legenda dinâmica centralizada */}
             <p className="text-xs text-white/60 mb-2 leading-relaxed text-center">
-              São Dezenas de Robôs com Estatísticas Dia-a-Dia, Mês-a-Mês desde 2022 para você
-              acompanhar e saber exatamente o quanto pode arriscar e o potencial de ganho de cada
-              configuração. <span className="text-white/80 font-medium">Você no Controle Total!</span>
+              {slides[idx].caption}
             </p>
 
-            {/* Imagem clicável (abre lightbox) */}
-            <button
-              type="button"
-              onClick={() => { setOpen(true); setZoom(1); }}
-              className="block w-full text-left"
-              aria-label="Ampliar imagem de backtests"
-              title="Clique para ampliar"
+            {/* Área do slide */}
+            <div
+              className="relative rounded-2xl border border-white/10 shadow-xl overflow-hidden group"
+              onTouchStart={onTouchStart}
+              onTouchEnd={onTouchEnd}
             >
+              {/* Imagem atual */}
               <img
-                src="/brand/backtest.png"
-                alt="Backtest e resultados dos robôs HFT"
-                className="rounded-2xl border border-white/10 shadow-xl w-full h-auto object-cover transition transform hover:scale-[1.01] cursor-zoom-in"
+                key={slides[idx].src}
+                src={slides[idx].src}
+                alt={slides[idx].alt}
+                className="w-full h-auto object-cover"
                 loading="eager"
               />
-            </button>
 
-            <div className="absolute -bottom-4 -left-4 h-20 w-20 rounded-xl bg-[#ffd780]/20 blur-xl pointer-events-none" />
+              {/* Gradiente nas laterais para destaque das setas */}
+              <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition" />
+
+              {/* Setas */}
+              <button
+                type="button"
+                onClick={prev}
+                className="absolute left-2 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full bg-black/40 hover:bg-black/60 border border-white/10 grid place-items-center text-white/90"
+                aria-label="Slide anterior"
+                title="Anterior (←)"
+              >
+                ‹
+              </button>
+              <button
+                type="button"
+                onClick={next}
+                className="absolute right-2 top-1/2 -translate-y-1/2 h-9 w-9 rounded-full bg-black/40 hover:bg-black/60 border border-white/10 grid place-items-center text-white/90"
+                aria-label="Próximo slide"
+                title="Próximo (→)"
+              >
+                ›
+              </button>
+
+              {/* Indicadores (bolinhas) */}
+              <div className="absolute bottom-2 left-0 right-0 flex items-center justify-center gap-2">
+                {slides.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => go(i)}
+                    className={`h-1.5 rounded-full transition-all ${
+                      i === idx ? "w-6 bg-white" : "w-2.5 bg-white/50 hover:bg-white/70"
+                    }`}
+                    aria-label={`Ir para o slide ${i + 1}`}
+                    title={`Slide ${i + 1} de ${slides.length}`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* contador opcional */}
+            <div className="mt-2 text-center text-[10px] text-white/40">
+              {idx + 1} / {slides.length}
+            </div>
           </div>
         </div>
       </div>
-
-      {/* Lightbox / Modal */}
-      {open && (
-        <div
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm"
-          onClick={() => setOpen(false)}
-        >
-          {/* container para pan/zoom (scroll) */}
-          <div
-            className="absolute inset-0 m-4 md:m-8 lg:m-10 rounded-xl border border-white/10 bg-black/30 overflow-auto"
-            onClick={(e) => e.stopPropagation()} // evita fechar ao clicar na imagem
-          >
-            {/* barra superior com fechar */}
-            <div className="sticky top-0 flex justify-end gap-2 p-2 bg-black/30">
-              <button
-                onClick={dec}
-                className="px-3 py-1.5 rounded-md bg-white/10 hover:bg-white/20 text-sm"
-                title="Diminuir zoom"
-              >
-                −
-              </button>
-              <button
-                onClick={reset}
-                className="px-3 py-1.5 rounded-md bg-white/10 hover:bg-white/20 text-sm"
-                title="Resetar zoom"
-              >
-                100%
-              </button>
-              <button
-                onClick={inc}
-                className="px-3 py-1.5 rounded-md bg-white/10 hover:bg-white/20 text-sm"
-                title="Aumentar zoom"
-              >
-                +
-              </button>
-              <button
-                onClick={() => setOpen(false)}
-                className="ml-2 px-3 py-1.5 rounded-md bg-white/10 hover:bg-white/20 text-sm"
-                title="Fechar (Esc)"
-              >
-                ✕
-              </button>
-            </div>
-
-            {/* imagem com zoom */}
-            <div className="min-h-full w-full grid place-items-center p-3">
-              <img
-                src="/brand/backtest.png"
-                alt="Backtest e resultados dos robôs HFT (ampliado)"
-                className="max-w-[95vw] max-h-[90vh] object-contain select-none"
-                style={{ transform: `scale(${zoom})`, transformOrigin: "center center" }}
-                draggable={false}
-              />
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 }
