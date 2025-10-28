@@ -69,33 +69,27 @@ export default function HeroHFT() {
               </li>
             </ul>
 
-            {/* CTA */}
-            <div className="mt-7 flex gap-3 justify-center md:justify-start">
-              <Link
-                to="/login"
-                className="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 transition"
-              >
-                Começar agora
-              </Link>
-              <a
-                href="#vantagens"
-                className="px-5 py-2.5 rounded-xl border border-white/15 hover:border-white/30 transition"
-              >
-                Ver vantagens
-              </a>
-            </div>
           </div>
 
-          {/* Imagem à direita */}
-          <div className="relative">
-            <img
-              src="/brand/backtest.png"
-              alt="Backtest e resultados dos robôs HFT"
-              className="rounded-2xl border border-white/10 shadow-xl w-full h-auto object-cover"
-              loading="eager"
-            />
-            <div className="absolute -bottom-4 -left-4 h-20 w-20 rounded-xl bg-[#ffd780]/20 blur-xl pointer-events-none" />
-          </div>
+         {/* Imagem à direita */}
+        <div className="relative">
+          {/* legenda pequena acima da imagem */}
+          <p className="text-xs text-white/60 mb-2 leading-relaxed">
+            São Dezenas de Robôs com Estatísticas Dia-a-Dia, Mês-a-Mês desde 2022 para você
+            acompanhar e saber exatamente o quanto pode arriscar e o potencial de ganho de cada
+            configuração. <span className="text-white/80 font-medium">Você no Controle Total!</span>
+          </p>
+
+          <img
+            src="/brand/backtest.png"
+            alt="Backtest e resultados dos robôs HFT"
+            className="rounded-2xl border border-white/10 shadow-xl w-full h-auto object-cover"
+            loading="eager"
+          />
+
+          <div className="absolute -bottom-4 -left-4 h-20 w-20 rounded-xl bg-[#ffd780]/20 blur-xl pointer-events-none" />
+        </div>
+
         </div>
       </div>
     </section>
