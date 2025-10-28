@@ -19,7 +19,7 @@ export default function App() {
       {/* Rodapé com HFT + aviso em itálico (pequeno) */}
       <footer className="mt-12 border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 py-6 text-center">
-          <div className="text-sm text-white/80 tracking-wide">HFT</div>
+          <div className="text-sm text-white/80 tracking-wide">© {new Date().getFullYear()} Sirius HFT</div>
           <p className="mt-1 text-[11px] italic text-white/50">
             Ganhos Passados não são Garantias de Ganhos Futuros, mas com as Estatísticas temos Grandes Chances de Ganhar !
           </p>
