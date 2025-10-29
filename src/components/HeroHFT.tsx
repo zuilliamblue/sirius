@@ -8,7 +8,7 @@ type Slide = {
 };
 
 export default function HeroHFT() {
-  // Slides do carrossel (imagens na pasta /public/brand)
+  // Slides (imagens em /public/brand)
   const slides: Slide[] = [
     {
       src: "/brand/backtest.png",
@@ -37,7 +37,7 @@ export default function HeroHFT() {
   const next = () => setIdx((i) => (i === slides.length - 1 ? 0 : i + 1));
   const go = (i: number) => setIdx(i);
 
-  // Navegação por teclado ← →
+  // Navegar com ← →
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.key === "ArrowLeft") prev();
@@ -47,7 +47,7 @@ export default function HeroHFT() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  // Swipe simples em mobile
+  // Swipe mobile
   function onTouchStart(e: React.TouchEvent) {
     touchStartX.current = e.touches[0].clientX;
   }
@@ -60,6 +60,20 @@ export default function HeroHFT() {
     touchStartX.current = null;
   }
 
+  // Lightbox
+  const [open, setOpen] = useState(false);
+  const [zoom, setZoom] = useState(1);
+  const inc = () => setZoom((z) => Math.min(3, +(z + 0.25).toFixed(2)));
+  const dec = () => setZoom((z) => Math.max(1, +(z - 0.25).toFixed(2)));
+  const reset = () => setZoom(1);
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpen(false);
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
   return (
     <section className="relative overflow-hidden">
       {/* fundo/gradiente */}
@@ -68,7 +82,7 @@ export default function HeroHFT() {
           className="h-full w-full"
           style={{
             background:
-              "radial-gradient(1200px 600px at 20% 0%, rgba(255,215,128,0.20) 0%, rgba(255,215,128,0.08) 30%, rgba(0,0,0,0) 70%), linear-gradient(180deg, rgba(18,26,46,1) 0%, rgba(12,17,34,1) 100%)",
+              "radial-gradient(1200px 600px at 20% 0%, rgba(255,215,128,0.20) 0%, rgba(255,215,128,0.08) 30%, rgba(0,0,0,0) 70%), linear-gradient(180deg, rgba(11,12,17,1) 0%, rgba(8,9,13,1) 100%)",
           }}
         />
         <div
@@ -79,7 +93,7 @@ export default function HeroHFT() {
 
       <div className="max-w-7xl mx-auto px-4 py-10 md:py-14">
         <div className="grid md:grid-cols-2 gap-8 items-center">
-          {/* Texto (mantive como antes; sem os CTAs) */}
+          {/* Texto */}
           <div>
             {/* Título centralizado; “Estatística Pura” na linha de baixo */}
             <h2 className="text-3xl md:text-4xl font-semibold leading-tight text-center md:text-left uppercase">
@@ -95,42 +109,42 @@ export default function HeroHFT() {
               parâmetros de acordo com o capital e dá o play nas automações.
             </p>
 
-            {/* Bullets */}
+            {/* Bullets com EMOJIS */}
             <ul className="mt-6 space-y-3 text-white/85 max-w-xl mx-auto md:mx-0">
               <li className="flex gap-3">
-                <span className="mt-0.5 h-5 w-5 rounded-full bg-white/10 grid place-items-center text-sm">✓</span>
+                <span className="select-none">🤖</span>
                 Robôs 100% Automatizados;
               </li>
               <li className="flex gap-3">
-                <span className="mt-0.5 h-5 w-5 rounded-full bg-white/10 grid place-items-center text-sm">✓</span>
-                Ordens Oco, Gain e Stop do dia configurados;
+                <span className="select-none">🎯</span>
+                Ordens OCO, Gain e Stop do dia configurados;
               </li>
               <li className="flex gap-3">
-                <span className="mt-0.5 h-5 w-5 rounded-full bg-white/10 grid place-items-center text-sm">✓</span>
+                <span className="select-none">📊</span>
                 Estatísticas Reais e Transparência de Resultados;
               </li>
               <li className="flex gap-3">
-                <span className="mt-0.5 h-5 w-5 rounded-full bg-white/10 grid place-items-center text-sm">✓</span>
+                <span className="select-none">🎥</span>
                 Sala ao Vivo Educacional (Aprenda a operar seus Robôs);
               </li>
               <li className="flex gap-3">
-                <span className="mt-0.5 h-5 w-5 rounded-full bg-white/10 grid place-items-center text-sm">✓</span>
+                <span className="select-none">🧩</span>
                 Dezenas de Configurações para 1 único Robô de acordo com o seu capital;
               </li>
               <li className="flex gap-3">
-                <span className="mt-0.5 h-5 w-5 rounded-full bg-white/10 grid place-items-center text-sm">✓</span>
+                <span className="select-none">🎨</span>
                 Regra de Coloração que indica exatamente os pontos de entrada dos robôs;
               </li>
               <li className="flex gap-3">
-                <span className="mt-0.5 h-5 w-5 rounded-full bg-white/10 grid place-items-center text-sm">✓</span>
+                <span className="select-none">🖥️</span>
                 Automação via Profit Pro da Nelógica: você vai ver os robôs operando em tempo real.
               </li>
             </ul>
           </div>
 
-          {/* Carrossel à direita */}
+          {/* Carrossel à direita (clicável para ampliar) */}
           <div className="relative select-none">
-            {/* Legenda dinâmica centralizada */}
+            {/* legenda dinâmica centralizada */}
             <p className="text-xs text-white/60 mb-2 leading-relaxed text-center">
               {slides[idx].caption}
             </p>
@@ -141,16 +155,24 @@ export default function HeroHFT() {
               onTouchStart={onTouchStart}
               onTouchEnd={onTouchEnd}
             >
-              {/* Imagem atual */}
-              <img
-                key={slides[idx].src}
-                src={slides[idx].src}
-                alt={slides[idx].alt}
-                className="w-full h-auto object-cover"
-                loading="eager"
-              />
+              {/* Imagem atual (CLICÁVEL) */}
+              <button
+                type="button"
+                onClick={() => { setOpen(true); setZoom(1); }}
+                className="block w-full text-left"
+                aria-label="Ampliar imagem do slide"
+                title="Clique para ampliar"
+              >
+                <img
+                  key={slides[idx].src}
+                  src={slides[idx].src}
+                  alt={slides[idx].alt}
+                  className="w-full h-auto object-cover transition transform hover:scale-[1.01] cursor-zoom-in"
+                  loading="eager"
+                />
+              </button>
 
-              {/* Gradiente nas laterais para destaque das setas */}
+              {/* Gradientes laterais para destacar as setas */}
               <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition" />
               <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition" />
 
@@ -174,7 +196,7 @@ export default function HeroHFT() {
                 ›
               </button>
 
-              {/* Indicadores (bolinhas) */}
+              {/* Indicadores */}
               <div className="absolute bottom-2 left-0 right-0 flex items-center justify-center gap-2">
                 {slides.map((_, i) => (
                   <button
@@ -197,6 +219,62 @@ export default function HeroHFT() {
           </div>
         </div>
       </div>
+
+      {/* Lightbox / Modal para ampliar a IMAGEM DO SLIDE ATUAL */}
+      {open && (
+        <div
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm"
+          onClick={() => setOpen(false)}
+        >
+          <div
+            className="absolute inset-0 m-4 md:m-8 lg:m-10 rounded-xl border border-white/10 bg-black/30 overflow-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* barra superior */}
+            <div className="sticky top-0 flex justify-end gap-2 p-2 bg-black/30">
+              <button
+                onClick={dec}
+                className="px-3 py-1.5 rounded-md bg-white/10 hover:bg-white/20 text-sm"
+                title="Diminuir zoom"
+              >
+                −
+              </button>
+              <button
+                onClick={reset}
+                className="px-3 py-1.5 rounded-md bg-white/10 hover:bg-white/20 text-sm"
+                title="Resetar zoom"
+              >
+                100%
+              </button>
+              <button
+                onClick={inc}
+                className="px-3 py-1.5 rounded-md bg-white/10 hover:bg-white/20 text-sm"
+                title="Aumentar zoom"
+              >
+                +
+              </button>
+              <button
+                onClick={() => setOpen(false)}
+                className="ml-2 px-3 py-1.5 rounded-md bg-white/10 hover:bg-white/20 text-sm"
+                title="Fechar (Esc)"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* imagem atual com zoom */}
+            <div className="min-h-full w-full grid place-items-center p-3">
+              <img
+                src={slides[idx].src}
+                alt={`${slides[idx].alt} (ampliado)`}
+                className="max-w-[95vw] max-h-[90vh] object-contain select-none"
+                style={{ transform: `scale(${zoom})`, transformOrigin: "center center" }}
+                draggable={false}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
