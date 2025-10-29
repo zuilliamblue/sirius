@@ -6,8 +6,7 @@ import Login from "./pages/Login";
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#0a0f1e] text-white flex flex-col">
-      <Header />
+    <div className="min-h-screen bg-[#0a0b10] text-white flex flex-col">      <Header />
 
       <main className="flex-1">
         <Routes>
