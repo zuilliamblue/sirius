@@ -91,7 +91,7 @@ export default function HeroHFT() {
         />
       </div>
 
-<div className="max-w-7xl mx-auto px-4 py-10 md:py-14 min-h-[86svh] flex items-center">
+<div className="max-w-[1200px] mx-auto px-6 min-h-[82svh] grid md:grid-cols-2 items-center justify-items-center gap-10 lg:gap-14">
 <div className="grid md:grid-cols-2 gap-10 lg:gap-12 items-center">
           {/* Texto */}
           <div>
@@ -180,7 +180,7 @@ export default function HeroHFT() {
                   key={slides[idx].src}
                   src={slides[idx].src}
                   alt={slides[idx].alt}
-                  className="w-full h-auto object-cover transition transform hover:scale-[1.01] cursor-zoom-in"
+className="w-full max-w-[720px] justify-self-center"
                   loading="eager"
                 />
               </button>
