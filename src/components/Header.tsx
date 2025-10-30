@@ -25,28 +25,7 @@ export default function Header() {
 
   return (
     <header className="relative w-full isolate">
-      {/* camada base escura */}
-      <div className="absolute inset-0 -z-10 bg-[#0b0c0f]" />
-
-      {/* faixa/halo dourado sutil ao fundo */}
-      <div
-        className="absolute inset-0 -z-10 opacity-90"
-        style={{
-          background:
-            "radial-gradient(900px 420px at 50% 0%, rgba(255,215,128,.18), rgba(0,0,0,0) 70%)",
-        }}
-      />
-
-      {/* linha de brilho dourado bem discreta */}
-      <div
-        className="absolute inset-x-0 top-0 -z-10 h-12 opacity-75"
-        style={{
-          background:
-            "linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(182,139,42,.22) 35%, rgba(255,215,128,.28) 55%, rgba(182,139,42,.22) 75%, rgba(0,0,0,0) 100%)",
-        }}
-      />
-
-      {/* conteúdo */}
+      {/* Header transparente: deixa aparecer o fundo global da página */}
       <div className="relative">
         <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col items-center gap-3 text-center">
           {/* logo + título */}
@@ -98,6 +77,9 @@ export default function Header() {
             </div>
           )}
         </div>
+
+        {/* hairline discreta opcional */}
+        <div className="absolute inset-x-0 bottom-0 h-px bg-white/10" />
       </div>
     </header>
   );
