@@ -24,21 +24,32 @@ export default function Header() {
     user?.displayName?.split(" ")[0] ?? user?.email?.split("@")[0] ?? "";
 
   return (
-    <header className="relative w-full">
-      {/* camadas de fundo */}
-      <div className="absolute inset-0 bg-black" />
+    <header className="relative w-full isolate">
+      {/* camada base escura */}
+      <div className="absolute inset-0 -z-10 bg-[#0b0c0f]" />
+
+      {/* faixa/halo dourado sutil ao fundo */}
       <div
-        className="absolute inset-0 opacity-80"
+        className="absolute inset-0 -z-10 opacity-90"
         style={{
           background:
-            "linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(180,140,40,0.25) 35%, rgba(255,215,128,0.28) 55%, rgba(180,140,40,0.25) 75%, rgba(0,0,0,0) 100%)",
+            "radial-gradient(900px 420px at 50% 0%, rgba(255,215,128,.18), rgba(0,0,0,0) 70%)",
         }}
       />
 
-      <div className="relative z-10">
-        {/* ===== Layout em COLUNA ===== */}
+      {/* linha de brilho dourado bem discreta */}
+      <div
+        className="absolute inset-x-0 top-0 -z-10 h-12 opacity-75"
+        style={{
+          background:
+            "linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(182,139,42,.22) 35%, rgba(255,215,128,.28) 55%, rgba(182,139,42,.22) 75%, rgba(0,0,0,0) 100%)",
+        }}
+      />
+
+      {/* conteúdo */}
+      <div className="relative">
         <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col items-center gap-3 text-center">
-          {/* Linha 1: logo + título (lado a lado) */}
+          {/* logo + título */}
           <div className="flex items-center gap-3">
             <img
               src="/brand/SIRIUS.png"
@@ -46,17 +57,17 @@ export default function Header() {
               className="h-10 w-10 object-contain"
               loading="eager"
             />
-            <h1 className="text-lg md:text-xl font-semibold tracking-wide italic">
-              SIRIUS – HFTs de Alta Performance
+            <h1 className="font-heading text-lg md:text-xl font-semibold tracking-wide italic text-white">
+              SIRIUS — HFTs de Alta Performance
             </h1>
           </div>
 
-          {/* Linha 2: Login | Cadastro (ou usuário), EMBAIXO do logo+título */}
+          {/* login/cadastro ou usuário */}
           {!user ? (
             <nav className="text-sm">
               <Link
                 to="/login"
-                className="inline-block px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 transition"
+                className="inline-block px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white transition"
               >
                 Login&nbsp;|&nbsp;Cadastro
               </Link>
@@ -72,7 +83,7 @@ export default function Header() {
                     className="h-8 w-8 rounded-full object-cover"
                   />
                 ) : (
-                  <div className="h-8 w-8 rounded-full bg-white/10 grid place-items-center text-sm">
+                  <div className="h-8 w-8 rounded-full bg-white/10 grid place-items-center text-sm text-white">
                     {firstName.slice(0, 1).toUpperCase()}
                   </div>
                 )}
@@ -80,7 +91,7 @@ export default function Header() {
               </div>
               <button
                 onClick={handleSignOut}
-                className="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-sm transition"
+                className="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-sm text-white transition"
               >
                 Sair
               </button>

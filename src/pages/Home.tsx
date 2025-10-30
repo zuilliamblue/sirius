@@ -1,38 +1,49 @@
 // src/pages/Home.tsx
-
 import HeroHFT from "../components/HeroHFT";
 
-/**
- * Shell da Home que:
- * - Mantém 100% da formatação do seu HeroHFT (sem text-center / sem cores herdadas).
- * - Adiciona apenas o fundo escuro com brilho radial por trás (-z-10).
- * - Mantém a seção “Por que usar nossos HFTs?” com o seu texto.
- */
 export default function Home() {
   return (
-    <div className="relative min-h-[100svh] bg-[#0b0c0f] isolation-auto">
-      {/* Glow de fundo (atrás de tudo) */}
+    <div className="relative min-h-[100svh] bg-[#0b0c0f] isolate text-white">
+      {/* Glow global no topo (não interfere no Hero) */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
           background:
-            "radial-gradient(1200px 600px at 50% 0%, rgba(255,215,64,.08), rgba(0,0,0,0))",
+            "radial-gradient(1200px 600px at 50% 0%, rgba(255,215,64,.10), rgba(0,0,0,0))",
         }}
       />
 
-      {/* === SEU HERO COM CARROSSEL INTACTO === */}
+      {/* HERO com seu carrossel/título/bullets intactos */}
       <HeroHFT />
 
-      {/* divisória suave */}
+      {/* separador */}
       <div className="mx-auto mt-10 h-2 w-44 rounded-full bg-yellow-400/25" />
 
-      {/* “Por que usar nossos HFTs?” – mantendo seu texto/alinhamento sem forçar centro global */}
-      <section
-        id="por-que-usar"
-        className="mx-auto mt-12 max-w-[1100px] px-6 py-2"
-      >
-      <h2 className="font-heading mb-3 text-2xl sm:text-3xl font-extrabold tracking-[-0.01em] text-zinc-100">
+      {/* Seção com pattern pontilhado e tipografia no estilo */}
+      <section id="por-que-usar" className="relative mx-auto mt-12 max-w-[1100px] px-6 py-10 rounded-2xl">
+        {/* pattern pontilhado */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 -z-10 rounded-2xl"
+          style={{
+            background:
+              "radial-gradient(#ffffff 1px, rgba(0,0,0,0) 1.1px)",
+            backgroundSize: "18px 18px",
+            backgroundPosition: "center",
+            opacity: 0.06,
+          }}
+        />
+        {/* leve glow por trás da caixa */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 -z-20 rounded-2xl"
+          style={{
+            boxShadow: "0 0 120px 0 rgba(255,215,128,.08) inset",
+          }}
+        />
+
+        <h2 className="font-heading mb-3 text-2xl sm:text-3xl font-extrabold tracking-[-0.01em] text-zinc-50">
           Por que usar nossos HFTs?
         </h2>
         <p className="max-w-[900px] text-base sm:text-lg leading-relaxed text-zinc-300/90">
@@ -43,7 +54,6 @@ export default function Home() {
           maestria.
         </p>
       </section>
-
     </div>
   );
 }
