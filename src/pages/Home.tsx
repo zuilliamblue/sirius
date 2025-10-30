@@ -139,14 +139,6 @@ export default function Home() {
         </section>
       </main>
 
-      {/* Rodapé curto desta página (remova se já tiver global) */}
-      <footer className="relative z-10 mx-auto w-full max-w-[1100px] px-6 pb-10 pt-8 text-center text-[13px] text-zinc-400/80">
-        <div className="opacity-80">
-          © 2025 Sirius HFT — Ganhos passados não são garantias de ganhos
-          futuros, mas com as estatísticas temos grandes chances de ganhar!
-        </div>
-      </footer>
-
       {/* Fade no rodapé */}
       <div
         aria-hidden="true"
