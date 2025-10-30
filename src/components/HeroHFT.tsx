@@ -153,7 +153,7 @@ export default function HeroHFT() {
           {/* Carrossel à direita (clicável para ampliar) */}
           <div className="relative select-none">
             {/* legenda dinâmica centralizada */}
-            <p className="text-xs text-white/60 mb-2 leading-relaxed text-center">
+<p className="text-[11px] text-white/55 italic mb-2 leading-relaxed text-center">
               {slides[idx].caption}
             </p>
 
@@ -163,6 +163,11 @@ export default function HeroHFT() {
               onTouchStart={onTouchStart}
               onTouchEnd={onTouchEnd}
             >
+                {/* contador discreto (overlay) */}
+  <div className="pointer-events-none absolute right-2 bottom-2 rounded-md bg-black/50 px-2 py-0.5 text-[10px] text-white/70 tracking-wider">
+    {idx + 1} / {slides.length}
+  </div>
+
               {/* Imagem atual (CLICÁVEL) */}
               <button
                 type="button"
@@ -220,10 +225,7 @@ export default function HeroHFT() {
               </div>
             </div>
 
-            {/* contador opcional */}
-            <div className="mt-2 text-center text-[10px] text-white/40">
-              {idx + 1} / {slides.length}
-            </div>
+        
           </div>
         </div>
       </div>
