@@ -1,15 +1,6 @@
-// src/pages/Home.tsx  (ou Home.jsx, se seu projeto não estiver em TS)
+// src/pages/Home.tsx
 import React from "react";
-
-/** 
- * Home no estilo "hero centralizado" mantendo seu conteúdo original.
- * - Fundo escuro com brilho radial
- * - Headline grande com destaque amarelo (glow sutil)
- * - Subtítulo com o seu texto
- * - Bullets com emojis (como você pediu)
- * - Seção "Por que usar nossos HFTs?"
- * Somente Tailwind; nenhuma lib extra.
- */
+import CarouselHFT from "../components/CarouselHFT";
 
 function Highlight({ children }: { children: React.ReactNode }) {
   return (
@@ -54,26 +45,26 @@ export default function Home() {
       />
 
       <main className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1100px] flex-col items-center justify-center px-6 py-16 text-center">
-        {/* Badge opcional (pode editar/ocultar) */}
+        {/* Badge */}
         <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-yellow-500/30 bg-yellow-500/10 px-4 py-2 text-[13px] font-medium text-yellow-300 backdrop-blur">
           <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-yellow-400" />
           Estatística & Robôs – Transparência e Controle
         </div>
 
-        {/* Headline com o seu título */}
+        {/* Headline */}
         <h1 className="mx-auto mb-5 max-w-[980px] font-black leading-tight tracking-[-0.02em]
                        text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
           OPERE POR <Highlight>ESTATÍSTICA PURA!</Highlight>
         </h1>
 
-        {/* Subtítulo (mantendo seu texto) */}
+        {/* Subheadline */}
         <p className="mx-auto mb-10 max-w-[900px] text-base sm:text-lg md:text-xl text-zinc-300/90">
           Deixe a tomada de decisão para os algoritmos, opere sem sentir medo
           ou culpa quando seus trades dão errado. Aqui você configura os
           parâmetros de acordo com o capital e dá o play nas automações.
         </p>
 
-        {/* CTAs (opcionais) */}
+        {/* CTAs */}
         <div className="mb-10 flex flex-wrap items-center justify-center gap-4">
           <a
             href="#vantagens"
@@ -91,38 +82,46 @@ export default function Home() {
           </a>
         </div>
 
-        {/* Lista de vantagens (seu conteúdo, com emojis) */}
+        {/* === VANTAGENS + CARROSSEL (lado a lado no desktop) === */}
         <section id="vantagens" className="w-full">
-          <ul className="mx-auto grid max-w-[900px] gap-3 text-left sm:grid-cols-1">
-            <Bullet emoji="🤖">Robôs 100% Automatizados;</Bullet>
-            <Bullet emoji="🎯">
-              Ordens OCO, Gain e Stop do dia configurados;
-            </Bullet>
-            <Bullet emoji="📊">
-              Estatísticas Reais e Transparência de Resultados;
-            </Bullet>
-            <Bullet emoji="🎓">
-              Sala ao Vivo Educacional (Aprenda a operar seus Robôs);
-            </Bullet>
-            <Bullet emoji="🧩">
-              Dezenas de Configurações para 1 único Robô de acordo com o seu
-              capital;
-            </Bullet>
-            <Bullet emoji="🎨">
-              Regra de Coloração que indica exatamente os pontos de entrada dos
-              robôs;
-            </Bullet>
-            <Bullet emoji="⚡">
-              Automação via Profit Pro da Nelógica: você vê os robôs operando
-              em tempo real.
-            </Bullet>
-          </ul>
+          <div className="mx-auto grid max-w-[1100px] gap-8 md:grid-cols-2 items-start">
+            {/* Lista (esquerda) */}
+            <ul className="mx-auto max-w-[520px] space-y-3 text-left">
+              <Bullet emoji="🤖">Robôs 100% Automatizados;</Bullet>
+              <Bullet emoji="🎯">
+                Ordens OCO, Gain e Stop do dia configurados;
+              </Bullet>
+              <Bullet emoji="📊">
+                Estatísticas Reais e Transparência de Resultados;
+              </Bullet>
+              <Bullet emoji="🎓">
+                Sala ao Vivo Educacional (Aprenda a operar seus Robôs);
+              </Bullet>
+              <Bullet emoji="🧩">
+                Dezenas de Configurações para 1 único Robô de acordo com o seu
+                capital;
+              </Bullet>
+              <Bullet emoji="🎨">
+                Regra de Coloração que indica exatamente os pontos de entrada
+                dos robôs;
+              </Bullet>
+              <Bullet emoji="⚡">
+                Automação via Profit Pro da Nelógica: você vê os robôs operando
+                em tempo real.
+              </Bullet>
+            </ul>
+
+            {/* Carrossel (direita) */}
+            <div className="mx-auto">
+              <CarouselHFT />
+            </div>
+          </div>
         </section>
 
         {/* Espaço entre blocos */}
         <div className="mt-10 h-2 w-44 rounded-full bg-yellow-400/30" />
 
-        {/* Seção "Por que usar..." (mantendo seu texto) */}
+        {/* Por que usar... */}
         <section
           id="por-que-usar"
           className="mx-auto mt-12 max-w-[980px] text-left sm:text-center"
@@ -140,7 +139,7 @@ export default function Home() {
         </section>
       </main>
 
-      {/* Rodapé (se já existir no seu layout global, pode remover este bloco) */}
+      {/* Rodapé curto desta página (remova se já tiver global) */}
       <footer className="relative z-10 mx-auto w-full max-w-[1100px] px-6 pb-10 pt-8 text-center text-[13px] text-zinc-400/80">
         <div className="opacity-80">
           © 2025 Sirius HFT — Ganhos passados não são garantias de ganhos
