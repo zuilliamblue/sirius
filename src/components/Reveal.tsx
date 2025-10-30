@@ -1,5 +1,5 @@
 // src/components/Reveal.tsx
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, type ElementType } from "react";
 
 type Props = {
   children: React.ReactNode;
@@ -14,7 +14,8 @@ type Props = {
   /** threshold do observer (0=qualquer pixel visível) */
   threshold?: number;
   className?: string;
-  as?: keyof JSX.IntrinsicElements;
+  /** elemento a ser renderizado (ex.: 'section', 'li', 'div' etc.) */
+  as?: ElementType;
 };
 
 export default function Reveal({
@@ -31,11 +32,11 @@ export default function Reveal({
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    // acessibilidade: se usuário prefere menos animação, mostra direto
+    // acessibilidade: se o usuário prefere menos animação, mostra direto
     const prefersReduced =
       typeof window !== "undefined" &&
-      window.matchMedia &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+
     if (prefersReduced) {
       setVisible(true);
       return;
@@ -46,14 +47,14 @@ export default function Reveal({
 
     const io = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
+        for (const entry of entries) {
           if (entry.isIntersecting) {
             setVisible(true);
             if (once) io.unobserve(entry.target);
           } else if (!once) {
             setVisible(false);
           }
-        });
+        }
       },
       { threshold }
     );
@@ -62,7 +63,7 @@ export default function Reveal({
     return () => io.disconnect();
   }, [once, threshold]);
 
-  const Tag: any = as;
+  const Tag = as;
 
   return (
     <Tag
