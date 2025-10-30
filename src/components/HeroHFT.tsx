@@ -96,10 +96,18 @@ export default function HeroHFT() {
           {/* Texto */}
           <div>
             {/* Título centralizado; “Estatística Pura” na linha de baixo */}
-            <h2 className="text-3xl md:text-4xl font-semibold leading-tight text-center md:text-left uppercase">
+            <h2 className="font-heading text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-[-0.02em] text-center md:text-left uppercase">
               OPERE POR
               <br />
-              <span className="text-[#ffd780]">ESTATÍSTICA PURA!</span>
+          <span
+            className="text-[#ffd780]"
+            style={{
+              textShadow:
+                "0 0 8px rgba(255,215,128,.35), 0 0 22px rgba(255,215,128,.25)",
+            }}
+>
+            ESTATÍSTICA PURA!
+          </span>
             </h2>
 
             {/* Parágrafo em itálico */}

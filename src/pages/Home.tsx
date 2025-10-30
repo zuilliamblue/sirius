@@ -32,7 +32,7 @@ export default function Home() {
         id="por-que-usar"
         className="mx-auto mt-12 max-w-[1100px] px-6 py-2"
       >
-        <h2 className="mb-3 text-2xl sm:text-3xl font-extrabold tracking-[-0.01em] text-zinc-100">
+      <h2 className="font-heading mb-3 text-2xl sm:text-3xl font-extrabold tracking-[-0.01em] text-zinc-100">
           Por que usar nossos HFTs?
         </h2>
         <p className="max-w-[900px] text-base sm:text-lg leading-relaxed text-zinc-300/90">
