@@ -91,8 +91,8 @@ export default function HeroHFT() {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-10 md:py-14">
-        <div className="grid md:grid-cols-2 gap-8 items-center">
+<div className="max-w-7xl mx-auto px-4 py-10 md:py-14 min-h-[86svh] flex items-center">
+<div className="grid md:grid-cols-2 gap-10 lg:gap-12 items-center">
           {/* Texto */}
           <div>
             {/* Título centralizado; “Estatística Pura” na linha de baixo */}
