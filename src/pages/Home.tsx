@@ -1,6 +1,5 @@
 // src/pages/Home.tsx  (ou Home.jsx, se seu projeto não estiver em TS)
 import React from "react";
-import HeroHFT from "../components/HeroHFT";
 
 /** 
  * Home no estilo "hero centralizado" mantendo seu conteúdo original.
@@ -92,8 +91,33 @@ export default function Home() {
           </a>
         </div>
 
-        {/* === SEU HERO COM CARROSSEL INTACTO === */}
-      <HeroHFT />
+        {/* Lista de vantagens (seu conteúdo, com emojis) */}
+        <section id="vantagens" className="w-full">
+          <ul className="mx-auto grid max-w-[900px] gap-3 text-left sm:grid-cols-1">
+            <Bullet emoji="🤖">Robôs 100% Automatizados;</Bullet>
+            <Bullet emoji="🎯">
+              Ordens OCO, Gain e Stop do dia configurados;
+            </Bullet>
+            <Bullet emoji="📊">
+              Estatísticas Reais e Transparência de Resultados;
+            </Bullet>
+            <Bullet emoji="🎓">
+              Sala ao Vivo Educacional (Aprenda a operar seus Robôs);
+            </Bullet>
+            <Bullet emoji="🛠️">
+              Dezenas de Configurações para 1 único Robô de acordo com o seu
+              capital;
+            </Bullet>
+            <Bullet emoji="🌈">
+              Regra de Coloração que indica exatamente os pontos de entrada dos
+              robôs;
+            </Bullet>
+            <Bullet emoji="⚡">
+              Automação via Profit Pro da Nelógica: você vê os robôs operando
+              em tempo real.
+            </Bullet>
+          </ul>
+        </section>
 
         {/* Espaço entre blocos */}
         <div className="mt-10 h-2 w-44 rounded-full bg-yellow-400/30" />
