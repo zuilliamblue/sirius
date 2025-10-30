@@ -104,11 +104,11 @@ export default function Home() {
             <Bullet emoji="🎓">
               Sala ao Vivo Educacional (Aprenda a operar seus Robôs);
             </Bullet>
-            <Bullet emoji="🛠️">
+            <Bullet emoji="🧩">
               Dezenas de Configurações para 1 único Robô de acordo com o seu
               capital;
             </Bullet>
-            <Bullet emoji="🌈">
+            <Bullet emoji="🎨">
               Regra de Coloração que indica exatamente os pontos de entrada dos
               robôs;
             </Bullet>
