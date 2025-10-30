@@ -1,5 +1,5 @@
 // src/pages/Home.tsx
-import React from "react";
+
 import HeroHFT from "../components/HeroHFT";
 
 /**
@@ -44,10 +44,6 @@ export default function Home() {
         </p>
       </section>
 
-      {/* Rodapé leve (remova se já existir globalmente) */}
-      <footer className="mx-auto w-full max-w-[1100px] px-6 pb-10 pt-8 text-center text-[13px] text-zinc-400/80">
-        © 2025 Sirius HFT — Ganhos passados não garantem ganhos futuros.
-      </footer>
     </div>
   );
 }
