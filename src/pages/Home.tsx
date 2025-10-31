@@ -51,7 +51,7 @@ export default function Home() {
         <Reveal delay={0}>
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-yellow-500/30 bg-yellow-500/10 px-4 py-2 text-[13px] font-medium text-yellow-300 backdrop-blur">
             <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-yellow-400" />
-            Estatística & Robôs – Transparência e Controle
+            HFTs DE ALTA PERFORMANCE
           </div>
         </Reveal>
 
