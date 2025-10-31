@@ -47,7 +47,7 @@ export default function Home() {
         }}
       />
 
-      <main className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1100px] flex-col items-center justify-center px-6 py-16 text-center">
+      <main className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1100px] flex-col items-center justify-center px-6 pt-6 pb-16 text-center md:pt-8">
         <Reveal delay={0}>
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-yellow-500/30 bg-yellow-500/10 px-4 py-2 text-[13px] font-medium text-yellow-300 backdrop-blur">
             <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-yellow-400" />
