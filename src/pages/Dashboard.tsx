@@ -36,8 +36,7 @@ export default function Dashboard() {
             Olá{user?.displayName ? `, ${user.displayName.split(' ')[0]}` : ""}! 👋
           </h1>
           <p className="text-zinc-300/90">
-            Bem-vindo ao seu painel. Aqui vamos concentrar acessos rápidos, materiais
-            e suas funcionalidades dos HFTs.
+            Obrigado por fazer parte da comunidade e dar um passo rumo à sua consistência!
           </p>
         </div>
 
