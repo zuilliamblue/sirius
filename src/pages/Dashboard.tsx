@@ -116,7 +116,7 @@ export default function Dashboard() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-yellow-400/40 bg-yellow-400/10 px-5 py-2.5 text-sm font-semibold text-yellow-300 transition hover:bg-yellow-400/20 active:scale-[.98]"
               >
-                Classic
+                Sirius Classic
               </a>
               <a
                 href="https://nelogica.com.br/estrategias?id=19840"
@@ -124,7 +124,7 @@ export default function Dashboard() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full border border-yellow-400/40 bg-yellow-400/10 px-5 py-2.5 text-sm font-semibold text-yellow-300 transition hover:bg-yellow-400/20 active:scale-[.98]"
               >
-                Plus
+                Sirius Plus
               </a>
               <a
                 href="https://www.nelogica.com.br/automacao-de-estrategias?id=modulo-automacoes"
