@@ -77,15 +77,9 @@ export default function Home() {
               className="rounded-full border border-yellow-400/40 bg-yellow-400/15 px-6 py-3 text-sm font-semibold text-yellow-300 shadow
                        transition hover:border-yellow-400/60 hover:bg-yellow-400/25 active:scale-[.98]"
             >
-              Ver vantagens
+              COMEÇAR AGORA
             </a>
-            <a
-              href="#por-que-usar"
-              className="rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-zinc-100 shadow
-                       transition hover:border-white/20 hover:bg-white/10 active:scale-[.98]"
-            >
-              Por que usar nossos HFTs?
-            </a>
+           
           </div>
         </Reveal>
 
