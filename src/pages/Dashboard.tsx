@@ -35,7 +35,7 @@ export default function Dashboard() {
         <Reveal as="div" delay={0}>
           <div className="mb-8">
             <h1 className="font-heading text-2xl sm:text-3xl font-extrabold tracking-[-0.01em]">
-              Olá{user?.displayName ? `, ${user.displayName.split(" ")[0]}` : ""}! 👋
+              Olá{user?.displayName ? `, ${user.displayName.split(" ")[0]}` : ""}! 🤖
             </h1>
             <p className="text-zinc-300/90">
               Obrigado por fazer parte da comunidade e dar um passo a mais rumo à sua consistência!
