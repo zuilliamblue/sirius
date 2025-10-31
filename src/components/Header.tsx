@@ -69,13 +69,22 @@ export default function Header() {
 
           {/* CENTRO: apenas o logo (maior e centralizado) */}
           <div className="justify-self-center">
+          <Link
+            to="/"
+            aria-label="Ir para a Home"
+            title="Home"
+            className="inline-block rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400/60"
+          >
             <img
               src="/brand/SIRIUS.png"
               alt="Sirius"
-              className="h-16 w-auto md:h-20 lg:h-24 object-contain"
+              className="h-16 w-auto md:h-20 lg:h-24 object-contain transition hover:opacity-95"
               loading="eager"
+              draggable={false}
             />
-          </div>
+          </Link>
+        </div>
+
 
           {/* DIREITA: espaço reservado (em branco) para manter o centro perfeito */}
           <div className="justify-self-end" />
