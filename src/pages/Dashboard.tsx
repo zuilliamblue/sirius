@@ -36,13 +36,13 @@ export default function Dashboard() {
             Olá{user?.displayName ? `, ${user.displayName.split(' ')[0]}` : ""}! 👋
           </h1>
           <p className="text-zinc-300/90">
-            Obrigado por fazer parte da comunidade e dar um passo rumo à sua consistência!
+            Obrigado por fazer parte da comunidade e dar um passo a mais rumo à sua consistência!
           </p>
         </div>
 
         {/* Card principal: entrar no grupo do WhatsApp */}
         <section className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 shadow-lg">
-          <h2 className="font-heading text-xl font-bold mb-3">Comunidade</h2>
+          <h2 className="font-heading text-xl font-bold mb-3">Comunidade Whats</h2>
           <p className="text-zinc-300/90 mb-5">
             Entre no nosso grupo para receber avisos, materiais e tirar dúvidas com a equipe.
           </p>
