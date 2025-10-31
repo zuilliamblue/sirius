@@ -42,7 +42,13 @@ export default function Header() {
               </nav>
             ) : (
               <div className="flex items-center gap-3">
-                <div className="flex items-center gap-2">
+                {/* Usuário logado */}
+              <div className="flex items-center gap-3">
+                <a
+                  href="/dashboard"
+                  className="flex items-center gap-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400/60"
+                  title="Abrir Dashboard"
+                >
                   {user.photoURL ? (
                     <img
                       src={user.photoURL}
@@ -56,13 +62,16 @@ export default function Header() {
                     </div>
                   )}
                   <span className="text-sm text-white/90">{firstName}</span>
-                </div>
+                </a>
+
                 <button
                   onClick={handleSignOut}
                   className="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-sm text-white transition"
                 >
                   Sair
                 </button>
+              </div>
+
               </div>
             )}
           </div>
