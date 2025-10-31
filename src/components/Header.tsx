@@ -24,58 +24,61 @@ export default function Header() {
     user?.displayName?.split(" ")[0] ?? user?.email?.split("@")[0] ?? "";
 
   return (
-    // totalmente transparente, sem borda/gradiente/linha
+    // Header transparente e enxuto
     <header className="w-full bg-transparent">
-      <div className="max-w-7xl mx-auto px-6 py-4">
-        <div className="flex flex-col items-center gap-3 text-center">
-          {/* logo + título */}
-          <div className="flex items-center gap-3">
-            <img
-              src="/brand/SIRIUS.png"
-              alt="SIRIUS"
-              className="h-10 w-10 object-contain"
-              loading="eager"
-            />
-            <h1 className="font-heading text-lg md:text-xl font-semibold tracking-wide italic text-white">
-              SIRIUS — HFTs de Alta Performance
-            </h1>
+      <div className="max-w-7xl mx-auto px-4 py-2">
+        {/* grid 3 colunas: esquerda = login, centro = logo, direita vazia */}
+        <div className="grid grid-cols-3 items-center">
+          {/* ESQUERDA: Login/Cadastro (ou usuário logado) */}
+          <div className="justify-self-start">
+            {!user ? (
+              <nav className="text-sm">
+                <Link
+                  to="/login"
+                  className="inline-block px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white transition"
+                >
+                  Login&nbsp;|&nbsp;Cadastro
+                </Link>
+              </nav>
+            ) : (
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
+                  {user.photoURL ? (
+                    <img
+                      src={user.photoURL}
+                      alt={firstName}
+                      referrerPolicy="no-referrer"
+                      className="h-8 w-8 rounded-full object-cover"
+                    />
+                  ) : (
+                    <div className="h-8 w-8 rounded-full bg-white/10 grid place-items-center text-sm text-white">
+                      {firstName.slice(0, 1).toUpperCase()}
+                    </div>
+                  )}
+                  <span className="text-sm text-white/90">{firstName}</span>
+                </div>
+                <button
+                  onClick={handleSignOut}
+                  className="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-sm text-white transition"
+                >
+                  Sair
+                </button>
+              </div>
+            )}
           </div>
 
-          {/* login/cadastro ou usuário */}
-          {!user ? (
-            <nav className="text-sm">
-              <Link
-                to="/login"
-                className="inline-block px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white transition"
-              >
-                Login&nbsp;|&nbsp;Cadastro
-              </Link>
-            </nav>
-          ) : (
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-2">
-                {user.photoURL ? (
-                  <img
-                    src={user.photoURL}
-                    alt={firstName}
-                    referrerPolicy="no-referrer"
-                    className="h-8 w-8 rounded-full object-cover"
-                  />
-                ) : (
-                  <div className="h-8 w-8 rounded-full bg-white/10 grid place-items-center text-sm text-white">
-                    {firstName.slice(0, 1).toUpperCase()}
-                  </div>
-                )}
-                <span className="text-sm text-white/90">{firstName}</span>
-              </div>
-              <button
-                onClick={handleSignOut}
-                className="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-sm text-white transition"
-              >
-                Sair
-              </button>
-            </div>
-          )}
+          {/* CENTRO: apenas o logo (maior e centralizado) */}
+          <div className="justify-self-center">
+            <img
+              src="/brand/SIRIUS.png"
+              alt="Sirius"
+              className="h-12 w-auto md:h-14 lg:h-16 object-contain"
+              loading="eager"
+            />
+          </div>
+
+          {/* DIREITA: espaço reservado (em branco) para manter o centro perfeito */}
+          <div className="justify-self-end" />
         </div>
       </div>
     </header>
