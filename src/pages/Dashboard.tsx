@@ -1,5 +1,5 @@
 // src/pages/Dashboard.tsx
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { onAuthStateChanged, type User } from "firebase/auth";
 import { auth } from "../lib/firebase";
 import { useNavigate } from "react-router-dom";
