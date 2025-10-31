@@ -1,31 +1,40 @@
 // src/pages/Login.tsx
-import { useMemo, useState } from "react";
-import { useLocation, useNavigate, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 
-import { auth, googleProvider, microsoftProvider, facebookProvider } from "../lib/firebase";
+import {
+  auth,
+  googleProvider,
+  microsoftProvider,
+  facebookProvider,
+} from "../lib/firebase";
 
 import {
   signInWithPopup,
   fetchSignInMethodsForEmail,
   linkWithCredential,
-  linkWithPopup, 
+  linkWithPopup,
   GoogleAuthProvider,
   FacebookAuthProvider,
   OAuthProvider,
+  onAuthStateChanged,
 } from "firebase/auth";
 
 export default function Login() {
   const navigate = useNavigate();
-  const location = useLocation();
-
-  const redirectTo = useMemo(() => {
-    const p = new URLSearchParams(location.search);
-    // fallback: home
-    return p.get("redirect") || "/";
-  }, [location.search]);
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // 👉 Helper para enviar SEMPRE ao Dashboard
+  const goToDashboard = () => navigate("/dashboard", { replace: true });
+
+  // 👉 Se já estiver logado e cair no /login, manda pro dashboard
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, (u) => {
+      if (u) goToDashboard();
+    });
+    return () => unsub();
+  }, []);
 
   // ———————————————————————————————————————————————————————————————
   // Tratador universal para "account-exists-with-different-credential"
@@ -91,86 +100,83 @@ export default function Login() {
   }
   // ———————————————————————————————————————————————————————————————
 
-
   async function signInOrLink(
-  provider: GoogleAuthProvider | FacebookAuthProvider | OAuthProvider,
-  from: "google" | "facebook" | "microsoft",
-  onSuccess: () => void,
-  onError: (msg: string) => void,
-  resolver: (err: any, from: "google" | "facebook" | "microsoft") => Promise<any>
-) {
-  try {
-    // Se já existe usuário logado, vincula o novo provedor
-    if (auth.currentUser) {
-      await linkWithPopup(auth.currentUser, provider);
-      onSuccess();
-      return;
-    }
-
-    // Senão, fluxo normal de login por popup
-    await signInWithPopup(auth, provider);
-    onSuccess();
-  } catch (err: any) {
-    if (err?.code === "auth/account-exists-with-different-credential") {
-      try {
-        // Resolve automaticamente: loga com o provedor existente e linka o novo
-        await resolver(err, from);
+    provider: GoogleAuthProvider | FacebookAuthProvider | OAuthProvider,
+    from: "google" | "facebook" | "microsoft",
+    onSuccess: () => void,
+    onError: (msg: string) => void,
+    resolver: (err: any, from: "google" | "facebook" | "microsoft") => Promise<any>
+  ) {
+    try {
+      // Se já existe usuário logado, vincula o novo provedor
+      if (auth.currentUser) {
+        await linkWithPopup(auth.currentUser, provider);
         onSuccess();
-      } catch (e: any) {
-        onError(e?.message ?? "Falha ao vincular conta.");
+        return;
       }
-      return;
-    }
 
-    // Mensagem amigável se o Facebook não contou qual provedor existe
-    if (err?.code === "auth/popup-closed-by-user") {
-      onError("Janela fechada antes de concluir o login.");
-    } else {
-      onError(err?.message ?? "Falha ao autenticar.");
+      // Senão, fluxo normal de login por popup
+      await signInWithPopup(auth, provider);
+      onSuccess();
+    } catch (err: any) {
+      if (err?.code === "auth/account-exists-with-different-credential") {
+        try {
+          // Resolve automaticamente: loga com o provedor existente e linka o novo
+          await resolver(err, from);
+          onSuccess();
+        } catch (e: any) {
+          onError(e?.message ?? "Falha ao vincular conta.");
+        }
+        return;
+      }
+
+      // Mensagem amigável se o usuário fechou o popup
+      if (err?.code === "auth/popup-closed-by-user") {
+        onError("Janela fechada antes de concluir o login.");
+      } else {
+        onError(err?.message ?? "Falha ao autenticar.");
+      }
     }
   }
-}
-
 
   async function handleGoogle() {
-  setLoading(true);
-  setError(null);
-  await signInOrLink(
-    googleProvider,
-    "google",
-    () => navigate(redirectTo, { replace: true }),
-    (msg) => setError(msg),
-    resolveAccountExists
-  );
-  setLoading(false);
-}
+    setLoading(true);
+    setError(null);
+    await signInOrLink(
+      googleProvider,
+      "google",
+      goToDashboard, // 👉 sempre para /dashboard
+      (msg) => setError(msg),
+      resolveAccountExists
+    );
+    setLoading(false);
+  }
 
-async function handleMicrosoft() {
-  setLoading(true);
-  setError(null);
-  await signInOrLink(
-    microsoftProvider,
-    "microsoft",
-    () => navigate(redirectTo, { replace: true }),
-    (msg) => setError(msg),
-    resolveAccountExists
-  );
-  setLoading(false);
-}
+  async function handleMicrosoft() {
+    setLoading(true);
+    setError(null);
+    await signInOrLink(
+      microsoftProvider,
+      "microsoft",
+      goToDashboard, // 👉 sempre para /dashboard
+      (msg) => setError(msg),
+      resolveAccountExists
+    );
+    setLoading(false);
+  }
 
-async function handleFacebook() {
-  setLoading(true);
-  setError(null);
-  await signInOrLink(
-    facebookProvider,
-    "facebook",
-    () => navigate(redirectTo, { replace: true }),
-    (msg) => setError(msg),
-    resolveAccountExists
-  );
-  setLoading(false);
-}
-
+  async function handleFacebook() {
+    setLoading(true);
+    setError(null);
+    await signInOrLink(
+      facebookProvider,
+      "facebook",
+      goToDashboard, // 👉 sempre para /dashboard
+      (msg) => setError(msg),
+      resolveAccountExists
+    );
+    setLoading(false);
+  }
 
   return (
     <main className="flex-1">
