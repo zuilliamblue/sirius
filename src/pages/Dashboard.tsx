@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { onAuthStateChanged, type User } from "firebase/auth";
 import { auth } from "../lib/firebase";
 import { useNavigate } from "react-router-dom";
+import Reveal from "../components/Reveal";
 
 export default function Dashboard() {
   const [user, setUser] = useState<User | null>(null);
@@ -31,17 +32,19 @@ export default function Dashboard() {
 
       <main className="relative z-10 mx-auto max-w-[1100px] px-6 pt-10 pb-16">
         {/* Título/boas-vindas */}
-        <div className="mb-8">
-          <h1 className="font-heading text-2xl sm:text-3xl font-extrabold tracking-[-0.01em]">
-            Olá{user?.displayName ? `, ${user.displayName.split(' ')[0]}` : ""}! 👋
-          </h1>
-          <p className="text-zinc-300/90">
-            Obrigado por fazer parte da comunidade e dar um passo a mais rumo à sua consistência!
-          </p>
-        </div>
+        <Reveal as="div" delay={0}>
+          <div className="mb-8">
+            <h1 className="font-heading text-2xl sm:text-3xl font-extrabold tracking-[-0.01em]">
+              Olá{user?.displayName ? `, ${user.displayName.split(" ")[0]}` : ""}! 👋
+            </h1>
+            <p className="text-zinc-300/90">
+              Obrigado por fazer parte da comunidade e dar um passo a mais rumo à sua consistência!
+            </p>
+          </div>
+        </Reveal>
 
-        {/* Card principal: entrar no grupo do WhatsApp */}
-        <section className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 shadow-lg">
+        {/* CARD 1 — Comunidade WhatsApp */}
+        <Reveal as="section" delay={80} className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 shadow-lg">
           <h2 className="font-heading text-xl font-bold mb-3">Comunidade Whats</h2>
           <p className="text-zinc-300/90 mb-5">
             Entre no nosso grupo para receber avisos, materiais e tirar dúvidas com a equipe.
@@ -67,7 +70,88 @@ export default function Dashboard() {
             </svg>
             Entrar no grupo do WhatsApp
           </a>
-        </section>
+        </Reveal>
+
+        {/* GRID de cards extras */}
+        <div className="mt-8 grid gap-6 md:grid-cols-2">
+          {/* CARD 2 — Meus Robôs */}
+          <Reveal as="section" delay={120} className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 shadow-lg">
+            <h3 className="font-heading text-lg font-bold mb-2">Meus Robôs</h3>
+            <p className="text-zinc-300/90 mb-5">Acessar minhas estatísticas</p>
+            <button
+              type="button"
+              className="inline-flex items-center gap-2 rounded-full border border-yellow-400/40 bg-yellow-400/10 px-5 py-2.5 text-sm font-semibold text-yellow-300 transition hover:bg-yellow-400/20 active:scale-[.98]"
+              title="Em breve"
+            >
+              Acessar agora
+            </button>
+          </Reveal>
+
+          {/* CARD 3 — Conhecer todos os Robôs */}
+          <Reveal as="section" delay={160} className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 shadow-lg">
+            <h3 className="font-heading text-lg font-bold mb-2">Conhecer todos os Robôs</h3>
+            <p className="text-zinc-300/90 mb-5">
+              Aqui você conhece nosso Pool com todas as configurações possíveis para o seu operacional ser imbatível
+            </p>
+            <a
+              href="#"
+              className="inline-flex items-center gap-2 rounded-full border border-yellow-400/40 bg-yellow-400/10 px-5 py-2.5 text-sm font-semibold text-yellow-300 transition hover:bg-yellow-400/20 active:scale-[.98]"
+              title="Clique e conheça"
+            >
+              Clique Aqui
+            </a>
+          </Reveal>
+
+          {/* CARD 4 — Assinar na Nelogica */}
+          <Reveal as="section" delay={200} className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 shadow-lg">
+            <h3 className="font-heading text-lg font-bold mb-2">Assinar na Nelogica</h3>
+            <p className="text-zinc-300/90 mb-5">
+              Escolha seus Robôs e o Plano direto no seu Profit.<br />
+              <span className="text-zinc-400">Necessário Profit Pro e Módulo de Automação.</span>
+            </p>
+            <div className="flex flex-wrap items-center gap-3">
+              <a
+                href="https://nelogica.com.br/estrategias?id=19844"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-yellow-400/40 bg-yellow-400/10 px-5 py-2.5 text-sm font-semibold text-yellow-300 transition hover:bg-yellow-400/20 active:scale-[.98]"
+              >
+                Classic
+              </a>
+              <a
+                href="https://nelogica.com.br/estrategias?id=19840"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-yellow-400/40 bg-yellow-400/10 px-5 py-2.5 text-sm font-semibold text-yellow-300 transition hover:bg-yellow-400/20 active:scale-[.98]"
+              >
+                Plus
+              </a>
+              <a
+                href="https://www.nelogica.com.br/automacao-de-estrategias?id=modulo-automacoes"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-emerald-400/40 bg-emerald-400/10 px-5 py-2.5 text-sm font-semibold text-emerald-300 transition hover:bg-emerald-400/20 active:scale-[.98]"
+              >
+                Módulo de Automações
+              </a>
+            </div>
+          </Reveal>
+
+          {/* CARD 5 — Regras de Coloração Grátis */}
+          <Reveal as="section" delay={240} className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 shadow-lg">
+            <h3 className="font-heading text-lg font-bold mb-2">Regras de Coloração Grátis</h3>
+            <p className="text-zinc-300/90 mb-5">
+              Adicione as regras de coloração ao seu gráfico para saber exatamente os pontos de entrada de cada Robô.
+            </p>
+            <button
+              type="button"
+              className="inline-flex items-center gap-2 rounded-full border border-yellow-400/40 bg-yellow-400/10 px-5 py-2.5 text-sm font-semibold text-yellow-300 transition hover:bg-yellow-400/20 active:scale-[.98]"
+              title="Em breve"
+            >
+              Baixe Aqui
+            </button>
+          </Reveal>
+        </div>
       </main>
     </div>
   );
